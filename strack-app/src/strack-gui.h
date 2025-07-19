@@ -10,5 +10,4 @@ public:
     explicit StrackDialog(QWidget* parent = nullptr);
 };
 
-#endif // STRACK_GUI_H
-
+#endif

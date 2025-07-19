@@ -2,4 +2,4 @@
 
 project(strack-app)
 
-add_subdirectory(strack-gui)
+add_subdirectory(src)
