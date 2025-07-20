@@ -1,42 +1,70 @@
-cmake_minimum_required(VERSION 3.22)
-project(strack-gui LANGUAGES CXX)
+﻿cmake_minimum_required(VERSION 3.22)
+project(strack-app LANGUAGES CXX)
 
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTOUIC ON)
-set(CMAKE_AUTORCC ON)
+# ─── Qt Automatic MOC/UIC/RCC ────────────────────────────────────────────────
+set(CMAKE_AUTOMOC   ON)
+set(CMAKE_AUTOUIC   ON)
+set(CMAKE_AUTORCC   ON)
 
+# ─── Locate Qt6 Widgets ────────────────────────────────────────────────────
 find_package(Qt6 REQUIRED COMPONENTS Widgets)
 
-add_executable(strack
-    strack-gui.cpp
-    
-    "Windows/MainWindow/MainWindow.cpp" 
-    "Windows/MainWindow/MainWindow.h" 
-    "Windows/MainWindow/Components/ApplicationMenuBar.cpp" 
-    "Windows/MainWindow/Components/ApplicationMenuBar.h" 
-    "Windows/MainWindow/Components/FileExplorerWidget.h" 
-    "Windows/MainWindow/Components/FileExplorerWidget.cpp" 
-    "Windows/MainWindow/Components/CodeEditorWidget.cpp" 
-    "Windows/MainWindow/Components/CodeEditorWidget.h" 
-    "Themes/Theme.h" 
-    "Themes/LightTheme.cpp" 
-    "Themes/LightTheme.h"  
-    "Themes/DarkTheme.h" 
-    "Themes/DarkTheme.cpp"
-    "Windows/StartupWindow/Components/ProjectActionsWidget.cpp" 
-    "Windows/StartupWindow/Components/ProjectActionsWidget.h" 
-    "Windows/StartupWindow/Components/RecentProjectsWidget.cpp" 
-    "Windows/StartupWindow/Components/RecentProjectsWidget.h" 
-    "Windows/StartupWindow/StartupWindow.h" 
-    "Windows/StartupWindow/StartupWindow.cpp"
+# ─── Collect our sources ───────────────────────────────────────────────────
+set(STRACK_SOURCES
+    ${CMAKE_CURRENT_SOURCE_DIR}/strack-gui.cpp
+
+    ${CMAKE_CURRENT_SOURCE_DIR}/Windows/MainWindow/MainWindow.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Windows/MainWindow/Components/ApplicationMenuBar.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Windows/MainWindow/Components/FileExplorerWidget.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Windows/MainWindow/Components/CodeEditorWidget.cpp
+
+    ${CMAKE_CURRENT_SOURCE_DIR}/Themes/LightTheme.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Themes/DarkTheme.cpp
+
+    ${CMAKE_CURRENT_SOURCE_DIR}/Windows/StartupWindow/Components/ProjectActionsWidget.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Windows/StartupWindow/Components/RecentProjectsWidget.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Windows/StartupWindow/StartupWindow.cpp
 )
 
+set(STRACK_HEADERS
+    ${CMAKE_CURRENT_SOURCE_DIR}/Windows/MainWindow/MainWindow.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Windows/MainWindow/Components/ApplicationMenuBar.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Windows/MainWindow/Components/FileExplorerWidget.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Windows/MainWindow/Components/CodeEditorWidget.h
+
+    ${CMAKE_CURRENT_SOURCE_DIR}/Themes/Theme.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Themes/LightTheme.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Themes/DarkTheme.h
+
+    ${CMAKE_CURRENT_SOURCE_DIR}/Windows/StartupWindow/Components/ProjectActionsWidget.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Windows/StartupWindow/Components/RecentProjectsWidget.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Windows/StartupWindow/StartupWindow.h
+)
+
+# ─── Build the executable ──────────────────────────────────────────────────
+add_executable(strack
+    ${STRACK_SOURCES}
+    ${STRACK_HEADERS}   # so that IDEs see them
+)
+
+# ─── Suppress Qt warnings on MSVC ──────────────────────────────────────────
+if (MSVC)
+    # Treat Qt include dirs as SYSTEM to silence warnings like C26495/C26813
+    target_include_directories(strack SYSTEM PRIVATE
+        $<TARGET_PROPERTY:Qt6::Widgets,INTERFACE_INCLUDE_DIRECTORIES>
+    )
+    # Globally disable external warnings
+    target_compile_options(strack PRIVATE
+        /external:W0
+    )
+endif()
+
+# ─── Link against Qt6 Widgets ──────────────────────────────────────────────
 target_link_libraries(strack PRIVATE Qt6::Widgets)
 
-# Replace the Qt path with the path on your machine.
+# ─── Windows deployment helper ─────────────────────────────────────────────
 if (WIN32)
     set(WINDEPLOYQT_EXE "C:/Qt/6.9.1/msvc2022_64/bin/windeployqt.exe")
-
     add_custom_command(TARGET strack POST_BUILD
         COMMAND "${WINDEPLOYQT_EXE}" "$<TARGET_FILE:strack>"
     )
