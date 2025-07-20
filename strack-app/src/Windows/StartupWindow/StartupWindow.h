@@ -4,14 +4,16 @@
 #include <QDialog>
 #include <QString>
 #include <memory>
-
-class ProjectActionsWidget;
-class RecentProjectsWidget;
+#include "Components/ProjectActionsWidget.h"
+#include "Components/RecentProjectsWidget.h"
 
 class StartupWindow : public QDialog {
     Q_OBJECT
+
 public:
     explicit StartupWindow(QWidget* parent = nullptr);
+    ~StartupWindow();
+
     QString selectedProjectPath() const;
 
 private:

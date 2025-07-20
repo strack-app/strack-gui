@@ -7,6 +7,8 @@
 #include <QMessageBox>
 #include <QDir>
 
+StartupWindow::~StartupWindow() = default;
+
 StartupWindow::StartupWindow(QWidget* parent)
     : QDialog(parent),
     actionsWidget(std::make_unique<ProjectActionsWidget>(this)),
