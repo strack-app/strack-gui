@@ -86,3 +86,8 @@ void MainWindow::showAboutDialog()
 {
     QMessageBox::information(this, tr("About"), tr("Strack\nA Qt-based modular IDE template."));
 }
+
+void MainWindow::setProjectPath(const QString& projectPath)
+{
+    fileExplorer->setRootPath(projectPath);
+}
