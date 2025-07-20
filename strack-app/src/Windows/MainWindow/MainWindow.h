@@ -2,9 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "./components/ApplicationMenuBar.h"
-#include "./components/FileExplorerWidget.h"
-#include "./components/CodeEditorWidget.h"
+#include "./Components/ApplicationMenuBar.h"
+#include "./Components/FileExplorerWidget.h"
+#include "./Components/CodeEditorWidget.h"
 #include <memory>
 #include "../../Themes/Theme.h"
 
@@ -14,13 +14,13 @@ class MainWindow : public QMainWindow {
 public:
     explicit MainWindow(QWidget* parent = nullptr);
     void setTheme(std::unique_ptr<Theme> theme);
+    void setProjectPath(const QString& projectPath);
 
 private:
     ApplicationMenuBar* appMenuBar;
     FileExplorerWidget* fileExplorer;
     CodeEditorWidget* codeEditor;
     std::unique_ptr<Theme> currentTheme;
-
     void setupDockWidgets();
     void connectSignals();
 

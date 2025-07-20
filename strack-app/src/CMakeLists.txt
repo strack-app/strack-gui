@@ -12,17 +12,24 @@ add_executable(strack
     
     "Windows/MainWindow/MainWindow.cpp" 
     "Windows/MainWindow/MainWindow.h" 
-    "Windows/MainWindow/components/ApplicationMenuBar.cpp" 
-    "Windows/MainWindow/components/ApplicationMenuBar.h" 
-    "Windows/MainWindow/components/FileExplorerWidget.h" 
-    "Windows/MainWindow/components/FileExplorerWidget.cpp" 
-    "Windows/MainWindow/components/CodeEditorWidget.cpp" 
-    "Windows/MainWindow/components/CodeEditorWidget.h" 
+    "Windows/MainWindow/Components/ApplicationMenuBar.cpp" 
+    "Windows/MainWindow/Components/ApplicationMenuBar.h" 
+    "Windows/MainWindow/Components/FileExplorerWidget.h" 
+    "Windows/MainWindow/Components/FileExplorerWidget.cpp" 
+    "Windows/MainWindow/Components/CodeEditorWidget.cpp" 
+    "Windows/MainWindow/Components/CodeEditorWidget.h" 
     "Themes/Theme.h" 
     "Themes/LightTheme.cpp" 
     "Themes/LightTheme.h"  
     "Themes/DarkTheme.h" 
-    "Themes/DarkTheme.cpp")
+    "Themes/DarkTheme.cpp"
+    "Windows/StartupWindow/Components/ProjectActionsWidget.cpp" 
+    "Windows/StartupWindow/Components/ProjectActionsWidget.h" 
+    "Windows/StartupWindow/Components/RecentProjectsWidget.cpp" 
+    "Windows/StartupWindow/Components/RecentProjectsWidget.h" 
+    "Windows/StartupWindow/StartupWindow.h" 
+    "Windows/StartupWindow/StartupWindow.cpp"
+)
 
 target_link_libraries(strack PRIVATE Qt6::Widgets)
 
