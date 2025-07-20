@@ -10,7 +10,19 @@ find_package(Qt6 REQUIRED COMPONENTS Widgets)
 add_executable(strack
     strack-gui.cpp
     
- "Windows/MainWindow/MainWindow.cpp" "Windows/MainWindow/MainWindow.h" "Windows/MainWindow/components/ApplicationMenuBar.cpp" "Windows/MainWindow/components/ApplicationMenuBar.h" "Windows/MainWindow/components/FileExplorerWidget.h" "Windows/MainWindow/components/FileExplorerWidget.cpp" "Windows/MainWindow/components/CodeEditorWidget.cpp" "Windows/MainWindow/components/CodeEditorWidget.h")
+    "Windows/MainWindow/MainWindow.cpp" 
+    "Windows/MainWindow/MainWindow.h" 
+    "Windows/MainWindow/components/ApplicationMenuBar.cpp" 
+    "Windows/MainWindow/components/ApplicationMenuBar.h" 
+    "Windows/MainWindow/components/FileExplorerWidget.h" 
+    "Windows/MainWindow/components/FileExplorerWidget.cpp" 
+    "Windows/MainWindow/components/CodeEditorWidget.cpp" 
+    "Windows/MainWindow/components/CodeEditorWidget.h" 
+    "Themes/Theme.h" 
+    "Themes/LightTheme.cpp" 
+    "Themes/LightTheme.h"  
+    "Themes/DarkTheme.h" 
+    "Themes/DarkTheme.cpp")
 
 target_link_libraries(strack PRIVATE Qt6::Widgets)
 

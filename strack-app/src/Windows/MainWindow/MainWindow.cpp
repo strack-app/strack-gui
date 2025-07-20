@@ -4,6 +4,9 @@
 #include <QFileInfo>
 #include <QDir>
 #include <QMessageBox>
+#include <QApplication>
+#include <memory>
+#include "../../Themes/Theme.h"
 
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent),
@@ -15,9 +18,14 @@ MainWindow::MainWindow(QWidget* parent)
     setCentralWidget(codeEditor);
     setupDockWidgets();
     connectSignals();
-
     setWindowTitle(tr("Strack"));
     resize(1024, 768);
+}
+
+void MainWindow::setTheme(std::unique_ptr<Theme> theme)
+{
+    currentTheme = std::move(theme);
+    qApp->setStyleSheet(currentTheme->styleSheet());
 }
 
 void MainWindow::setupDockWidgets()
@@ -38,9 +46,7 @@ void MainWindow::connectSignals()
             this,
             tr("Open File"),
             QDir::currentPath(),
-            tr("Source Files (*.cpp *.h);;"
-                "Text Files (*.txt);;"
-                "All Files (*)")
+            tr("Source Files (*.cpp *.h);Text Files (*.txt);All Files (*)")
         );
         if (!file.isEmpty()) {
             codeEditor->openFile(file);
@@ -73,12 +79,10 @@ void MainWindow::toggleExplorer()
 
 void MainWindow::openSettingsDialog()
 {
-    QMessageBox::information(this, tr("Settings"),
-        tr("Settings dialog can be implemented here."));
+    QMessageBox::information(this, tr("Settings"), tr("Settings dialog can be implemented here."));
 }
 
 void MainWindow::showAboutDialog()
 {
-    QMessageBox::information(this, tr("About"),
-        tr("Strack\nA Qt‑based modular IDE template."));
+    QMessageBox::information(this, tr("About"), tr("Strack\nA Qt-based modular IDE template."));
 }
