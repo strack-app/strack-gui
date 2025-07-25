@@ -24,6 +24,8 @@ set(STRACK_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/Windows/StartupWindow/Components/ProjectActionsWidget.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Windows/StartupWindow/Components/RecentProjectsWidget.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Windows/StartupWindow/StartupWindow.cpp
+
+    ${CMAKE_CURRENT_SOURCE_DIR}/Windows/SettingsWindow/SettingsWindow.cpp
 )
 
 set(STRACK_HEADERS
@@ -39,6 +41,8 @@ set(STRACK_HEADERS
     ${CMAKE_CURRENT_SOURCE_DIR}/Windows/StartupWindow/Components/ProjectActionsWidget.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Windows/StartupWindow/Components/RecentProjectsWidget.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Windows/StartupWindow/StartupWindow.h
+
+    ${CMAKE_CURRENT_SOURCE_DIR}/Windows/SettingsWindow/SettingsWindow.h
 )
 
 # ─── Build the executable ──────────────────────────────────────────────────

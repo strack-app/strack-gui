@@ -7,6 +7,7 @@
 #include <QApplication>
 #include <memory>
 #include "../../Themes/Theme.h"
+#include "../SettingsWindow/SettingsWindow.h"
 
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent),
@@ -79,7 +80,8 @@ void MainWindow::toggleExplorer()
 
 void MainWindow::openSettingsDialog()
 {
-    QMessageBox::information(this, tr("Settings"), tr("Settings dialog can be implemented here."));
+    SettingsWindow dialog(this);
+    dialog.exec();
 }
 
 void MainWindow::showAboutDialog()
