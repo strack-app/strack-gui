@@ -5,6 +5,7 @@
 #include "./Components/ApplicationMenuBar.h"
 #include "./Components/FileExplorerWidget.h"
 #include "./Components/CodeEditorWidget.h"
+#include "./Components/ControlStripWidget.h"
 #include <memory>
 #include "../../Themes/Theme.h"
 
@@ -20,8 +21,10 @@ private:
     ApplicationMenuBar* appMenuBar;
     FileExplorerWidget* fileExplorer;
     CodeEditorWidget* codeEditor;
+    ControlStripWidget* controlStrip;
     std::unique_ptr<Theme> currentTheme;
-    void setupDockWidgets();
+
+    void setupCentralLayout();
     void connectSignals();
 
 private slots:

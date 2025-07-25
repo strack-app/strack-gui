@@ -17,6 +17,7 @@ set(STRACK_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/Windows/MainWindow/Components/ApplicationMenuBar.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Windows/MainWindow/Components/FileExplorerWidget.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Windows/MainWindow/Components/CodeEditorWidget.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Windows/MainWindow/Components/ControlStripWidget.cpp
 
     ${CMAKE_CURRENT_SOURCE_DIR}/Themes/LightTheme.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Themes/DarkTheme.cpp
@@ -33,6 +34,7 @@ set(STRACK_HEADERS
     ${CMAKE_CURRENT_SOURCE_DIR}/Windows/MainWindow/Components/ApplicationMenuBar.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Windows/MainWindow/Components/FileExplorerWidget.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Windows/MainWindow/Components/CodeEditorWidget.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/Windows/MainWindow/Components/ControlStripWidget.h
 
     ${CMAKE_CURRENT_SOURCE_DIR}/Themes/Theme.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Themes/LightTheme.h

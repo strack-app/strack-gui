@@ -5,6 +5,8 @@
 #include <QDir>
 #include <QMessageBox>
 #include <QApplication>
+#include <QSplitter>
+#include <QVBoxLayout>
 #include <memory>
 #include "../../Themes/Theme.h"
 #include "../SettingsWindow/SettingsWindow.h"
@@ -13,11 +15,11 @@ MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent),
     appMenuBar(new ApplicationMenuBar(this)),
     fileExplorer(new FileExplorerWidget(this)),
-    codeEditor(new CodeEditorWidget(this))
+    codeEditor(new CodeEditorWidget(this)),
+    controlStrip(new ControlStripWidget(this))
 {
     setMenuBar(appMenuBar);
-    setCentralWidget(codeEditor);
-    setupDockWidgets();
+    setupCentralLayout();
     connectSignals();
     setWindowTitle(tr("Strack"));
     resize(1024, 768);
@@ -29,12 +31,24 @@ void MainWindow::setTheme(std::unique_ptr<Theme> theme)
     qApp->setStyleSheet(currentTheme->styleSheet());
 }
 
-void MainWindow::setupDockWidgets()
+void MainWindow::setupCentralLayout()
 {
-    auto* dock = new QDockWidget(tr("Solution Explorer"), this);
-    dock->setWidget(fileExplorer);
-    dock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
-    addDockWidget(Qt::LeftDockWidgetArea, dock);
+    auto* central = new QWidget(this);
+    auto* layout = new QVBoxLayout(central);
+    layout->setContentsMargins(0, 0, 0, 0);
+    layout->setSpacing(0);
+
+    layout->addWidget(controlStrip);
+
+    auto* splitter = new QSplitter(Qt::Horizontal, central);
+    splitter->addWidget(fileExplorer);
+    splitter->addWidget(codeEditor);
+    splitter->setStretchFactor(1, 1);
+
+    layout->addWidget(splitter);
+
+    central->setLayout(layout);
+    setCentralWidget(central);
 }
 
 void MainWindow::connectSignals()
@@ -63,6 +77,18 @@ void MainWindow::connectSignals()
 
     connect(appMenuBar, &ApplicationMenuBar::aboutRequested,
         this, &MainWindow::showAboutDialog);
+
+    connect(controlStrip, &ControlStripWidget::runClicked, []() {
+        qDebug() << "Run clicked";
+        });
+
+    connect(controlStrip, &ControlStripWidget::addClicked, []() {
+        qDebug() << "Add clicked";
+        });
+
+    connect(controlStrip, &ControlStripWidget::deleteClicked, []() {
+        qDebug() << "Delete clicked";
+        });
 }
 
 void MainWindow::onFileSelected(const QString& filePath)
@@ -72,10 +98,7 @@ void MainWindow::onFileSelected(const QString& filePath)
 
 void MainWindow::toggleExplorer()
 {
-    const auto docks = findChildren<QDockWidget*>();
-    if (!docks.isEmpty()) {
-        docks.first()->setVisible(!docks.first()->isVisible());
-    }
+    fileExplorer->setVisible(!fileExplorer->isVisible());
 }
 
 void MainWindow::openSettingsDialog()
