@@ -1,4 +1,4 @@
-#include "FileExplorerWidget.h"
+#include "Windows/MainWindow/Components/FileExplorerWidget.h"
 #include <QVBoxLayout>
 #include <QDir>
 

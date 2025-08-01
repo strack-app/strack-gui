@@ -1,4 +1,4 @@
-#include "ControlStripWidget.h"
+#include "Windows/MainWindow/Components/ControlStripWidget.h"
 
 ControlStripWidget::ControlStripWidget(QWidget* parent)
     : QWidget(parent),

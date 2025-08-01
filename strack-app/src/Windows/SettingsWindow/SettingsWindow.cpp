@@ -1,4 +1,4 @@
-#include "SettingsWindow.h"
+#include "Windows/SettingsWindow/SettingsWindow.h"
 #include <QTabWidget>
 #include <QVBoxLayout>
 #include <QLabel>

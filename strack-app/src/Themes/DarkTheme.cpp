@@ -1,4 +1,4 @@
-#include "DarkTheme.h"
+#include "Themes/DarkTheme.h"
 
 QString DarkTheme::styleSheet() const {
     return QString(R"(

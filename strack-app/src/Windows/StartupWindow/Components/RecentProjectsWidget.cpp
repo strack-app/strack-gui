@@ -1,4 +1,4 @@
-#include "RecentProjectsWidget.h"
+#include "Windows/StartupWindow/Components/RecentProjectsWidget.h"
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QSettings>
