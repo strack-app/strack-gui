@@ -1,4 +1,4 @@
-#include "ApplicationMenuBar.h"
+#include "Windows/MainWindow/Components/ApplicationMenuBar.h"
 #include <QApplication>
 
 ApplicationMenuBar::ApplicationMenuBar(QWidget* parent)

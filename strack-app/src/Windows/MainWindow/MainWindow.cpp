@@ -1,4 +1,6 @@
-﻿#include "MainWindow.h"
+﻿#include "Windows/MainWindow/MainWindow.h"
+#include "Windows/SettingsWindow/SettingsWindow.h"
+#include "Themes/Theme.h"
 #include <QDockWidget>
 #include <QFileDialog>
 #include <QFileInfo>
@@ -8,8 +10,6 @@
 #include <QSplitter>
 #include <QVBoxLayout>
 #include <memory>
-#include "../../Themes/Theme.h"
-#include "../SettingsWindow/SettingsWindow.h"
 
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent),

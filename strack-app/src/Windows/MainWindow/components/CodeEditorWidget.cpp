@@ -1,4 +1,4 @@
-#include "CodeEditorWidget.h"
+#include "Windows/MainWindow/Components/CodeEditorWidget.h"
 #include <QFile>
 #include <QTextStream>
 #include <QMessageBox>

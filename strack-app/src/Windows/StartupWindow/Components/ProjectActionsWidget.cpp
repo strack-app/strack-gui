@@ -1,4 +1,4 @@
-#include "ProjectActionsWidget.h"
+#include "Windows/StartupWindow/Components/ProjectActionsWidget.h"
 #include <QVBoxLayout>
 
 ProjectActionsWidget::ProjectActionsWidget(QWidget* parent)

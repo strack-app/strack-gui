@@ -1,4 +1,4 @@
-#include "LightTheme.h"
+#include "Themes/LightTheme.h"
 
 QString LightTheme::styleSheet() const {
     return QString(R"(

@@ -1,6 +1,6 @@
-#include "StartupWindow.h"
-#include "./Components/ProjectActionsWidget.h"
-#include "./Components/RecentProjectsWidget.h"
+#include "Windows/StartupWindow/StartupWindow.h"
+#include "Windows/StartupWindow/Components/ProjectActionsWidget.h"
+#include "Windows/StartupWindow/Components/RecentProjectsWidget.h"
 #include <QVBoxLayout>
 #include <QFileDialog>
 #include <QInputDialog>
