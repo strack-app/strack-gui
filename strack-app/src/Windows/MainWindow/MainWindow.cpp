@@ -1,6 +1,11 @@
 ﻿#include "Windows/MainWindow/MainWindow.h"
+#include "Windows/MainWindow/Components/ApplicationMenuBar.h"
+#include "Windows/MainWindow/Components/FileExplorerWidget.h"
+#include "Windows/MainWindow/Components/ControlStripWidget.h"
+#include "Windows/MainWindow/Components/ContentWidget/ContentWidget.h"
 #include "Windows/SettingsWindow/SettingsWindow.h"
 #include "Themes/Theme.h"
+
 #include <QDockWidget>
 #include <QFileDialog>
 #include <QFileInfo>
@@ -9,13 +14,12 @@
 #include <QApplication>
 #include <QSplitter>
 #include <QVBoxLayout>
-#include <memory>
 
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent),
     appMenuBar(new ApplicationMenuBar(this)),
     fileExplorer(new FileExplorerWidget(this)),
-    codeEditor(new CodeEditorWidget(this)),
+    contentWidget(new ContentWidget(this)),
     controlStrip(new ControlStripWidget(this))
 {
     setMenuBar(appMenuBar);
@@ -42,7 +46,7 @@ void MainWindow::setupCentralLayout()
 
     auto* splitter = new QSplitter(Qt::Horizontal, central);
     splitter->addWidget(fileExplorer);
-    splitter->addWidget(codeEditor);
+    splitter->addWidget(contentWidget);
     splitter->setStretchFactor(1, 1);
 
     layout->addWidget(splitter);
@@ -64,7 +68,7 @@ void MainWindow::connectSignals()
             tr("Source Files (*.cpp *.h);Text Files (*.txt);All Files (*)")
         );
         if (!file.isEmpty()) {
-            codeEditor->openFile(file);
+            contentWidget->openFile(file);
             fileExplorer->setRootPath(QFileInfo(file).absolutePath());
         }
         });
@@ -93,7 +97,7 @@ void MainWindow::connectSignals()
 
 void MainWindow::onFileSelected(const QString& filePath)
 {
-    codeEditor->openFile(filePath);
+    contentWidget->openFile(filePath);
 }
 
 void MainWindow::toggleExplorer()
