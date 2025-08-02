@@ -2,14 +2,16 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "./Components/ApplicationMenuBar.h"
-#include "./Components/FileExplorerWidget.h"
-#include "./Components/CodeEditorWidget.h"
-#include "./Components/ControlStripWidget.h"
 #include <memory>
-#include "../../Themes/Theme.h"
 
-class MainWindow : public QMainWindow {
+class ApplicationMenuBar;
+class FileExplorerWidget;
+class ControlStripWidget;
+class ContentWidget;
+class Theme;
+
+class MainWindow : public QMainWindow
+{
     Q_OBJECT
 
 public:
@@ -20,18 +22,16 @@ public:
 private:
     ApplicationMenuBar* appMenuBar;
     FileExplorerWidget* fileExplorer;
-    CodeEditorWidget* codeEditor;
+    ContentWidget* contentWidget;
     ControlStripWidget* controlStrip;
     std::unique_ptr<Theme> currentTheme;
 
     void setupCentralLayout();
     void connectSignals();
 
-private slots:
     void onFileSelected(const QString& filePath);
     void toggleExplorer();
     void openSettingsDialog();
     void showAboutDialog();
 };
-
 #endif // MAINWINDOW_H
